@@ -1,5 +1,4 @@
 (function(){
-    let apiQuotes = []
     const ElquoteContainer = document.querySelector('#quote-container')
     const Elloader = document.querySelector('#loader')
     const Elquote = document.querySelector('#quote')
@@ -17,16 +16,10 @@
         Elloader.hidden = true;
     }
 
-    function getRandomArbitrary(max) {
-        return Math.floor(Math.random()  * max)
-    }
-
-    function newQuote() {
-        const quoteItem = apiQuotes[getRandomArbitrary(apiQuotes.length)]
-
-        Elquote.textContent = quoteItem.text ? quoteItem.text : 'Unknown'
-        Elauthor.textContent = quoteItem.author ? quoteItem.author : 'Unknown'
-        quoteItem.text.length > 50 ? Elquote.classList.add('long-quote') : Elquote.classList.remove('long-quote')
+    function newQuote(quoteItem) {
+        Elquote.textContent = quoteItem.quoteText ? quoteItem.quoteText : 'Unknown'
+        Elauthor.textContent = quoteItem.quoteAuthor ? quoteItem.quoteAuthor : 'Unknown'
+        quoteItem.quoteText.length > 50 ? Elquote.classList.add('long-quote') : Elquote.classList.remove('long-quote')
 
         complete() 
     }
@@ -35,14 +28,15 @@
     async function getQuotes() {
         loading()
         
-        const apiUrl  = 'https://type.fit/api/quotes'
-        ElquoteContainer.classList.remove('hidde')
+        const proxyUrl = 'https://warm-everglades-01381.herokuapp.com/';
+        const apiUrl =
+          'http://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json';
     
         try {
-            const response = await fetch(apiUrl);
+            const response = await fetch(proxyUrl + apiUrl);
             apiQuotes = await response.json();
             setTimeout(()=>{
-                newQuote()
+                newQuote(apiQuotes)
             },1000)
         } catch (error) {
             // Catch  Error Here
@@ -54,7 +48,7 @@
         window.open(twitterUrl, '_blank')
     }
 
-    ElbtnNewQuote.addEventListener('click', newQuote)
+    ElbtnNewQuote.addEventListener('click', getQuotes)
     ElbtnTwitter.addEventListener('click', postTweetQuote)
     
     getQuotes()

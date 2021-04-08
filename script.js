@@ -1,5 +1,6 @@
 (function(){
     const ElquoteContainer = document.querySelector('#quote-container')
+    const ElContainer = document.querySelector('#container')
     const Elloader = document.querySelector('#loader')
     const Elquote = document.querySelector('#quote')
     const Elauthor = document.querySelector('#author')
@@ -8,11 +9,11 @@
 
     function loading() {
         Elloader.hidden = false;
-        ElquoteContainer.hidden = true;
+        ElContainer.hidden = true;
     }
 
     function complete() {
-        ElquoteContainer.hidden = false;
+        ElContainer.hidden = false;
         Elloader.hidden = true;
     }
 
@@ -35,9 +36,7 @@
         try {
             const response = await fetch(proxyUrl + apiUrl);
             apiQuotes = await response.json();
-            setTimeout(()=>{
-                newQuote(apiQuotes)
-            },1000)
+            newQuote(apiQuotes)
         } catch (error) {
             // Catch  Error Here
         }

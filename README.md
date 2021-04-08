@@ -1,6 +1,5 @@
 # QUOTE GENERATOR
 For people who need a moment of reflexion, generate a new wise quote every time you click a button!
-It also change colors, one color more beaufitul than the next. 
 Also possibility to share the quote on twitter. You will look very wise :wink:
 
 ![Quote Generator ScreenShot](quote_img_neumorphism.png)

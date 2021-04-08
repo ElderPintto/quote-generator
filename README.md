@@ -2,6 +2,8 @@
 For people who need a moment of reflexion, generate a new wise quote every time you click a button!
 Also possibility to share the quote on twitter. You will look very wise :wink:
 
+
+## [View Demo](https://elderpintto.github.io/quote-generator/)
 ![Quote Generator ScreenShot](quote_img_neumorphism.png)
 
 ## Online Tools 
